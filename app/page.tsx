@@ -176,7 +176,7 @@ export default function Home() {
       <h1 className="text-3xl font-bold mb-6">Icon Preview</h1>
       <div className="flex gap-2 flex-wrap mb-6">
         <QuickAttendIcon iconName="accessibility" type="outline" />
-        <QuickAttendIcon iconName="accessibility" type="outline" />
+        <QuickAttendIcon iconName="accessibility" type="filled" />
       </div>
 
       <h1 className="text-3xl font-bold mb-6">Elevation Preview</h1>
