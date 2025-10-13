@@ -1,6 +1,8 @@
 # Test Quick A Mobile
 
-1) Typo
+1. Typo
+   - Color
    - Font: Chula, Sarabun | Regular, Bold
-2) Global Icon
+   - Shadow
+2. Global Icon
    - SVG from Ionicons
