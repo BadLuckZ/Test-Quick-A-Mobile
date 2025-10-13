@@ -1,3 +1,5 @@
+import QuickAttendIcon from "./components/QuickAttendIcon";
+
 export default function Home() {
   const typoClasses = [
     "display-large-primary",
@@ -47,7 +49,7 @@ export default function Home() {
     <div className="min-h-screen bg-neutral-100 text-neutral-black p-8">
       <h1 className="text-3xl font-bold mb-6">Typography Preview</h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
         {typoClasses.map((typo) => (
           <div
             key={typo}
@@ -56,6 +58,13 @@ export default function Home() {
             <p className={typo}>{formatClassName(typo)}</p>
           </div>
         ))}
+      </div>
+
+      <h1 className="text-3xl font-bold mb-6">Icon Preview</h1>
+
+      <div className="flex gap-2 flex-wrap">
+        <QuickAttendIcon iconName="accessibility" type="outline" />
+        <QuickAttendIcon iconName="accessibility" type="outline" />
       </div>
     </div>
   );
