@@ -174,10 +174,22 @@ export default function Home() {
       </div>
 
       <h1 className="text-3xl font-bold mb-6">Icon Preview</h1>
+      <div className="flex gap-2 flex-wrap mb-6">
+        <QuickAttendIcon iconName="accessibility" type="outline" />
+        <QuickAttendIcon iconName="accessibility" type="outline" />
+      </div>
 
-      <div className="flex gap-2 flex-wrap">
-        <QuickAttendIcon iconName="accessibility" type="outline" />
-        <QuickAttendIcon iconName="accessibility" type="outline" />
+      <h1 className="text-3xl font-bold mb-6">Elevation Preview</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-5 gap-4">
+        {[1, 2, 3, 4, 5].map((level) => (
+          <div
+            key={level}
+            className={`rounded-xl bg-white p-6 flex items-center justify-center shadow-elevation-${level}`}
+            style={{ minHeight: "100px" }}
+          >
+            <p className="font-medium">Elevation {level}</p>
+          </div>
+        ))}
       </div>
     </div>
   );
