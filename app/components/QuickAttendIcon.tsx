@@ -28,7 +28,22 @@ export default function QuickAttendIcon({
   );
 }
 
-export function UpIcon() {
+export function ChevronLeftIcon() {
+  return (
+    <QuickAttendIcon
+      iconName="chevron-right"
+      type="filled"
+      className="rotate-180"
+      size={16}
+    />
+  );
+}
+
+export function ChevronRightIcon() {
+  return <QuickAttendIcon iconName="chevron-right" type="filled" size={16} />;
+}
+
+export function ArrowUpIcon() {
   return <QuickAttendIcon iconName="up" type="outline" size={24} />;
 }
 

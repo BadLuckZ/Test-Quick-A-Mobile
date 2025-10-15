@@ -52,7 +52,7 @@ export default function PastEventCard({
         <h2 className="title-large-emphasized text-neutral-600">{name}</h2>
         <QuickAttendIcon
           iconName="chevron-up"
-          type="filled"
+          type="outline"
           size={20}
           className={`-translate-y-1 cursor-pointer transition-transform duration-300 ${
             openDetail ? "rotate-0" : "rotate-180"
