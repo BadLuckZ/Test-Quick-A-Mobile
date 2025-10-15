@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import MyEventCard from "./components/MyEventCard";
 import { HandleEventButton } from "./components/QuickAttendButton";
 import {
   CompassIcon,
   RedirectIcon,
   SortIcon,
+  UpIcon,
 } from "./components/QuickAttendIcon";
 import PastEventCard from "./components/PastEventCard";
 
@@ -21,21 +22,26 @@ export default function Home() {
   const eventOwner = "ผู้จัดการกิจกรรม";
   // =================
 
-  const [sortOption, setSortOption] = useState<0 | 1>(0);
+  const [sortOption, setSortOption] = useState<0 | 1 | null>(null);
+
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   // When there's a change in sort option
   useEffect(() => {
     if (sortOption == 0) {
       // Newest - Oldest
       alert("Sorting from new to old");
-    } else {
+    } else if (sortOption == 1) {
       // Oldest - Newest
       alert("Sorting from old to new");
     }
   }, [sortOption]);
 
   return (
-    <div className="w-full h-screen overflow-auto flex flex-col gap-12 px-8 py-12">
+    <div
+      ref={scrollRef}
+      className="w-full h-screen overflow-auto relative flex flex-col gap-12 px-8 py-12"
+    >
       {/* My Events */}
       <div>
         {/* Header */}
@@ -113,6 +119,16 @@ export default function Home() {
           })}
         </div>
       </div>
+
+      {/* Go to Top Button */}
+      <button
+        className="fixed right-8 bottom-12 p-4 w-14 h-14 rounded-full bg-primary z-50 cursor-pointer"
+        onClick={() =>
+          scrollRef.current?.scrollTo({ top: 0, behavior: "smooth" })
+        }
+      >
+        <UpIcon />
+      </button>
     </div>
   );
 }

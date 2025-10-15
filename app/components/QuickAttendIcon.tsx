@@ -28,6 +28,10 @@ export default function QuickAttendIcon({
   );
 }
 
+export function UpIcon() {
+  return <QuickAttendIcon iconName="up" type="outline" size={24} />;
+}
+
 export function DuplicateIcon() {
   return <QuickAttendIcon iconName="duplicate" type="filled" size={20} />;
 }
