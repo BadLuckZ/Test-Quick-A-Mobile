@@ -6,8 +6,18 @@ interface LLEPopupProps {
 
 export default function LLEPopup({ setOpenLLEPopup }: LLEPopupProps) {
   return (
-    <div className="absolute inset-0 z-10 flex items-center justify-center bg-neutral-black/70">
-      <div className="relative bg-neutral-white w-[349px] rounded-4xl p-4">
+    <div
+      className="fixed inset-0 z-10 flex items-center justify-center bg-neutral-black/70"
+      onClick={() => {
+        setOpenLLEPopup(false);
+      }}
+    >
+      <div
+        className="relative bg-neutral-white w-[349px] rounded-4xl px-4 py-6"
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+      >
         <h3 className="headline-small-emphasized mb-4 text-center">
           แจ้งเตือน
         </h3>
