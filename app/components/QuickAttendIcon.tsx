@@ -1,6 +1,7 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
+import LLEPopup from "./LLEPopup";
 
 type QuickAttendIconProps = {
   iconName: string;
@@ -58,16 +59,20 @@ export function CalendarIcon() {
 }
 
 export function RedirectIcon() {
+  const [openLLEPopup, setOpenLLEPopup] = useState(false);
   return (
-    <QuickAttendIcon
-      iconName="redirect"
-      type="outline"
-      size={24}
-      className="-translate-y-1 cursor-pointer"
-      onClick={() => {
-        alert("Go to LLE");
-      }}
-    />
+    <>
+      <QuickAttendIcon
+        iconName="redirect"
+        type="outline"
+        size={24}
+        className="-translate-y-1 cursor-pointer"
+        onClick={() => {
+          setOpenLLEPopup(true);
+        }}
+      />
+      {openLLEPopup && <LLEPopup setOpenLLEPopup={setOpenLLEPopup} />}
+    </>
   );
 }
 
