@@ -29,7 +29,7 @@ export default function RootLayout({
         className={`${chulaRegularFont.variable} ${chulaBoldFont.variable} antialiased 
           flex items-center justify-center h-full bg-black`}
       >
-        <div className="w-full max-w-[390px] bg-background">{children}</div>
+        <div className="w-full max-w-[390px] bg-neutral-white">{children}</div>
       </body>
     </html>
   );
