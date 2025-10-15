@@ -24,11 +24,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="h-full">
       <body
-        className={`${chulaRegularFont.variable} ${chulaBoldFont.variable} antialiased`}
+        className={`${chulaRegularFont.variable} ${chulaBoldFont.variable} antialiased 
+          flex items-center justify-center h-full bg-black`}
       >
-        {children}
+        <div className="w-full max-w-[390px] bg-background">{children}</div>
       </body>
     </html>
   );

@@ -58,6 +58,9 @@
   --color-primary: #e26385;
   --color-secondary: #ea87a2;
 
+  --color-foreground: var(--neutral-black);
+  --color-background: var(--neutral-200);
+
   --color-success: #0fba12;
   --color-error: #e61d31;
   --color-warning: #d48200;
@@ -86,7 +89,7 @@
 }
 
 body {
-  background: var(--background);
+  background: var(--neutral-black);
   color: var(--foreground);
   font-family: var(--font-chula-regular);
   margin: 0;
