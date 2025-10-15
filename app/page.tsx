@@ -1,8 +1,14 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import MyEventCard from "./components/MyEventCard";
-import QuickAttendButton, {
-  HandleEventButton,
-} from "./components/QuickAttendButton";
-import { CompassIcon, RedirectIcon } from "./components/QuickAttendIcon";
+import { HandleEventButton } from "./components/QuickAttendButton";
+import {
+  CompassIcon,
+  RedirectIcon,
+  SortIcon,
+} from "./components/QuickAttendIcon";
+import PastEventCard from "./components/PastEventCard";
 
 export default function Home() {
   // === Mock Data ===
@@ -15,8 +21,21 @@ export default function Home() {
   const eventOwner = "ผู้จัดการกิจกรรม";
   // =================
 
+  const [sortOption, setSortOption] = useState<0 | 1>(0);
+
+  // When there's a change in sort option
+  useEffect(() => {
+    if (sortOption == 0) {
+      // Newest - Oldest
+      alert("Sorting from new to old");
+    } else {
+      // Oldest - Newest
+      alert("Sorting from old to new");
+    }
+  }, [sortOption]);
+
   return (
-    <div className="w-full h-screen overflow-auto flex flex-col px-8 py-12">
+    <div className="w-full h-screen overflow-auto flex flex-col gap-12 px-8 py-12">
       {/* My Events */}
       <div>
         {/* Header */}
@@ -66,6 +85,34 @@ export default function Home() {
       </div>
 
       {/* Past Events */}
+      <div>
+        {/* Header */}
+        <div className="flex justify-between gap-4 mb-6">
+          <h1 className="headline-small-emphasized text-neutral-600">
+            กิจกรรมที่ผ่านมา
+          </h1>
+          <SortIcon setSortOption={setSortOption} />
+        </div>
+
+        {/* Events */}
+        <div className="flex flex-col gap-4 mb-6">
+          {["1", "2", "3"].map((id) => {
+            return (
+              <PastEventCard
+                key={id}
+                id={id}
+                name={eventName}
+                date={eventDate}
+                timeRange={eventTimeRange}
+                location={eventLocation}
+                description={eventDescription}
+                owner={eventOwner}
+                displayFirstRow={true}
+              />
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 }

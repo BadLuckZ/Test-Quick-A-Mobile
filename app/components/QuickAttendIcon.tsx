@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useState } from "react";
 import LLEPopup from "./LLEPopup";
 
@@ -30,16 +28,73 @@ export default function QuickAttendIcon({
   );
 }
 
-export function ShareIcon() {
-  return <QuickAttendIcon iconName="share" type="filled" size={20} />;
+export function DuplicateIcon() {
+  return <QuickAttendIcon iconName="duplicate" type="filled" size={20} />;
 }
 
-export function StatisticIcon() {
-  return <QuickAttendIcon iconName="statistic" type="filled" size={20} />;
+export function DownloadIcon() {
+  return <QuickAttendIcon iconName="download" type="filled" size={20} />;
+}
+
+export function DocumentIcon() {
+  return <QuickAttendIcon iconName="document" type="outline" size={20} />;
+}
+
+export function SortIcon({
+  setSortOption,
+}: {
+  setSortOption: (num: 0 | 1) => void;
+}) {
+  const [openSortDropdown, setOpenSortDropdown] = useState(false);
+  return (
+    <div className="relative">
+      <QuickAttendIcon
+        iconName="swap-vertical"
+        type="filled"
+        size={32}
+        className="-translate-y-1 cursor-pointer"
+        onClick={() => {
+          setOpenSortDropdown((prev) => !prev);
+        }}
+      />
+      {openSortDropdown && (
+        <div className="w-60 absolute mb-1 -translate-x-[90%] bg-neutral-white rounded-lg shadow-elevation-1 p-2 z-10">
+          <button
+            className="cursor-pointer block w-full body-small-primary text-left py-1 text-neutral-600 hover:bg-neutral-100"
+            onClick={(e) => {
+              e.stopPropagation();
+              setSortOption(0);
+              setOpenSortDropdown(false);
+            }}
+          >
+            วันที่จัดกิจกรรม : ใหม่สุด - เก่าสุด
+          </button>
+          <button
+            className="cursor-pointer block w-full body-small-primary text-left py-1 text-neutral-600 hover:bg-neutral-100"
+            onClick={(e) => {
+              e.stopPropagation();
+              setSortOption(1);
+              setOpenSortDropdown(false);
+            }}
+          >
+            วันที่จัดกิจกรรม : เก่าสุด - ใหม่สุด
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
+
+export function UploadIcon() {
+  return <QuickAttendIcon iconName="upload" type="filled" size={20} />;
+}
+
+export function StatisticIcon({ type }: { type: "outline" | "filled" }) {
+  return <QuickAttendIcon iconName="statistic" type={type} size={20} />;
 }
 
 export function ScanIcon() {
-  return <QuickAttendIcon iconName="scan" type="filled" size={20} />;
+  return <QuickAttendIcon iconName="scan" type="outline" size={20} />;
 }
 
 export function OwnerIcon() {
@@ -64,7 +119,7 @@ export function RedirectIcon() {
     <>
       <QuickAttendIcon
         iconName="redirect"
-        type="outline"
+        type="filled"
         size={24}
         className="-translate-y-1 cursor-pointer"
         onClick={() => {
@@ -80,7 +135,7 @@ export function CompassIcon() {
   return (
     <QuickAttendIcon
       iconName="compass"
-      type="outline"
+      type="filled"
       size={32}
       className="-translate-y-1 cursor-pointer"
       onClick={() => {

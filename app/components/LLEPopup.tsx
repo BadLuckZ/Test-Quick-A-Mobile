@@ -19,7 +19,8 @@ export default function LLEPopup({ setOpenLLEPopup }: LLEPopupProps) {
           <QuickAttendButton
             variant="outline"
             width={150}
-            onClick={() => {
+            onClick={(e) => {
+              e.stopPropagation();
               setOpenLLEPopup(false);
             }}
           >
@@ -28,7 +29,8 @@ export default function LLEPopup({ setOpenLLEPopup }: LLEPopupProps) {
           <QuickAttendButton
             variant="filled"
             width={150}
-            onClick={() => {
+            onClick={(e) => {
+              e.stopPropagation();
               alert("Go to LLE!");
               setOpenLLEPopup(false);
             }}

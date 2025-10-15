@@ -1,19 +1,17 @@
-"use client";
-
 import { useState } from "react";
 import QuickAttendIcon, {
   CalendarIcon,
   LocationIcon,
   OwnerIcon,
   ScanIcon,
-  ShareIcon,
+  UploadIcon,
   StatisticIcon,
   TimeIcon,
 } from "./QuickAttendIcon";
 import QuickAttendButton from "./QuickAttendButton";
 import LLEPopup from "./LLEPopup";
 
-interface EventCardProps {
+interface MyEventCardProps {
   id: string;
   name: string;
   date: string;
@@ -31,14 +29,17 @@ export default function MyEventCard({
   location,
   description,
   owner,
-}: EventCardProps) {
+}: MyEventCardProps) {
   const [openLLEPopup, setOpenLLEPopup] = useState(false);
   const [openShareDropdown, setOpenShareDropdown] = useState(false);
 
   return (
     <div
       key={id}
-      className="w-full min-h-[412px] bg-neutral-100 rounded-4xl flex flex-col px-4 py-6"
+      className="w-full min-h-[412px] bg-neutral-100 rounded-4xl flex flex-col px-4 py-6 cursor-pointer"
+      onClick={() => {
+        alert(`Go to Event ${id}`);
+      }}
     >
       {/* Header */}
       <div className="flex justify-between items-center gap-4 mb-1">
@@ -48,7 +49,8 @@ export default function MyEventCard({
           type="filled"
           size={20}
           className="-translate-y-1 cursor-pointer"
-          onClick={() => {
+          onClick={(e) => {
+            e.stopPropagation();
             setOpenLLEPopup(true);
           }}
         />
@@ -94,7 +96,8 @@ export default function MyEventCard({
         <QuickAttendButton
           variant="filled"
           width={180}
-          onClick={() => {
+          onClick={(e) => {
+            e.stopPropagation();
             alert(`Go to Scan from Card ${id}`);
           }}
         >
@@ -102,27 +105,48 @@ export default function MyEventCard({
           <p className="translate-y-1">สแกนผู้เข้าร่วมกิจกรรม</p>
         </QuickAttendButton>
 
-        <QuickAttendButton variant="outline" width={45}>
-          <StatisticIcon />
+        <QuickAttendButton
+          variant="outline"
+          width={45}
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+        >
+          <StatisticIcon type="filled" />
         </QuickAttendButton>
 
         <div className="relative">
           <QuickAttendButton
             variant="outline"
             width={45}
-            onClick={() => {
+            onClick={(e) => {
+              e.stopPropagation();
               setOpenShareDropdown((prev) => !prev);
             }}
           >
-            <ShareIcon />
+            <UploadIcon />
           </QuickAttendButton>
 
           {openShareDropdown && (
             <div className="w-40 absolute bottom-full mb-1 -translate-x-[70%] bg-neutral-white rounded-lg shadow-elevation-1 p-2 z-10">
-              <button className="cursor-pointer block w-full body-small-primary text-left py-1 text-neutral-600 hover:bg-neutral-100">
+              <button
+                className="cursor-pointer block w-full body-small-primary text-left py-1 text-neutral-600 hover:bg-neutral-100"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  alert(`Go to Scan Page for Event ${id}`);
+                  setOpenShareDropdown(false);
+                }}
+              >
                 ตัวสแกน QR
               </button>
-              <button className="cursor-pointer block w-full body-small-primary text-left py-1 text-neutral-600 hover:bg-neutral-100">
+              <button
+                className="cursor-pointer block w-full body-small-primary text-left py-1 text-neutral-600 hover:bg-neutral-100"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  alert(`Go to Dashboard for Event ${id}`);
+                  setOpenShareDropdown(false);
+                }}
+              >
                 แดชบอร์ด
               </button>
             </div>
